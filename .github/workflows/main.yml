@@ -29,19 +29,25 @@ jobs:
           template: classic
           base: header, activity, community, repositories, metadata
           base_indepth: yes
+          repositories_affiliations: organization_member
           config_timezone: Europe/Moscow
           plugin_isocalendar: yes
           plugin_isocalendar_duration: half-year
           plugin_lines: yes
-          plugin_lines_history_limit: 1
-          plugin_lines_repositories_limit: 4
+          plugin_lines_history_limit: 10
+          plugin_lines_repositories_limit: 40
           plugin_lines_sections: base
-          plugin_pagespeed: yes
-          plugin_pagespeed_detailed: yes
-          plugin_pagespeed_screenshot: yes
-          plugin_pagespeed_url: https://osvm.ai
           plugin_repositories: yes
           plugin_repositories_order: featured, pinned, starred, random
           plugin_repositories_random: 5
           plugin_repositories_starred: 11
-          repositories_forks: yes
+          plugin_repositories_affiliations: organization_member
+      - uses: lowlighter/metrics@latest
+        with:
+          filename: metrics.plugin.habits.facts.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: ""
+          plugin_habits: yes
+          plugin_habits_facts: yes
+          plugin_habits_charts: yes
+          config_timezone: Europe/Moscow
