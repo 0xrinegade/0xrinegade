@@ -1,0 +1,16 @@
+# Build artifacts
+/bin/
+/.actrc
+
+# Temporary files
+/tmp/
+/temp/
+*.tmp
+
+# Act temporary files
+/act-*
+/.act/
+
+# System files
+.DS_Store
+Thumbs.db
