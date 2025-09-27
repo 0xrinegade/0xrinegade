@@ -46,27 +46,52 @@ jobs:
           template: classic
           base: header, activity, community, repositories, metadata
           base_indepth: true
-          repositories_affiliations: organization_member
+          repositories_affiliations: >-
+            owner, collaborator, organization_member
           config_timezone: Europe/Moscow
+          config_display: large
+          config_animations: true
+          config_base64: false
+          config_padding: 6%
+          # Defensive configurations to prevent null/undefined errors
+          repositories_skipped: ""
+          users_ignored: ""
+          commits_authoring: .user.login, .user.name, .user.email
+          # ISO Calendar plugin with defensive settings
           plugin_isocalendar: true
           plugin_isocalendar_duration: half-year
+          # Lines plugin with defensive configurations
           plugin_lines: true
           plugin_lines_history_limit: 10
           plugin_lines_repositories_limit: 40
           plugin_lines_sections: base
           plugin_lines_skipped: ""
+          # Repositories plugin with safer configurations
           plugin_repositories: true
           plugin_repositories_order: featured, pinned, starred, random
           plugin_repositories_random: 5
           plugin_repositories_starred: 11
-          plugin_repositories_affiliations: organization_member
+          plugin_repositories_affiliations: >-
+            owner, collaborator, organization_member
           plugin_repositories_skipped: ""
       - uses: lowlighter/metrics@latest
         with:
           filename: metrics.plugin.habits.facts.svg
           token: ${{ secrets.METRICS_TOKEN }}
+          user: 0xrinegade
           base: ""
+          # Defensive configurations to prevent null/undefined errors
+          config_timezone: Europe/Moscow
+          config_display: large
+          config_animations: true
+          config_base64: false
+          repositories_skipped: ""
+          users_ignored: ""
+          commits_authoring: .user.login, .user.name, .user.email
+          # Habits plugin with defensive settings
           plugin_habits: true
           plugin_habits_facts: true
           plugin_habits_charts: true
-          config_timezone: Europe/Moscow
+          plugin_habits_from: 200
+          plugin_habits_days: 14
+          plugin_habits_trim: false
