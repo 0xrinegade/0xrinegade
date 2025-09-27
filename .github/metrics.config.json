@@ -1,0 +1,47 @@
+{
+  "config": {
+    "output_action": "none",
+    "experimental_features": ["--optimize"],
+    "retries": 3,
+    "retries_delay": 300,
+    "timeout": 900,
+    "user": "0xrinegade",
+    "repositories_skipped": [],
+    "users_ignored": [],
+    "commits_authoring": [".user.login", ".user.name", ".user.email"],
+    "repositories_default": [],
+    "repositories_batch": 100
+  },
+  "templates": {
+    "default": {
+      "partials": {
+        "base": "header, activity, community, repositories, metadata",
+        "repositories": "featured, pinned, starred, random"
+      },
+      "plugins": {
+        "core": {
+          "config": {
+            "timezone": "Europe/Moscow"
+          }
+        },
+        "lines": {
+          "config": {
+            "skipped": [],
+            "history_limit": 10,
+            "repositories_limit": 40,
+            "sections": ["base"]
+          }
+        },
+        "repositories": {
+          "config": {
+            "skipped": [],
+            "affiliations": ["owner", "collaborator", "organization_member"],
+            "order": ["featured", "pinned", "starred", "random"],
+            "random": 5,
+            "starred": 11
+          }
+        }
+      }
+    }
+  }
+}
