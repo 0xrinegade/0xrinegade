@@ -18,6 +18,10 @@ jobs:
       # Install required dependencies
       - name: Install dependencies
         run: |
+          # Remove conflicting containerd packages before installing docker.io
+          sudo apt-get remove -y containerd containerd.io docker-ce \
+            docker-ce-cli docker.io runc || true
+          sudo apt-get autoremove -y || true
           sudo apt-get update
           sudo apt-get install -y docker.io jq
           sudo systemctl start docker
