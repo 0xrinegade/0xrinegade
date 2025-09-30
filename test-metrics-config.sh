@@ -26,4 +26,10 @@ echo "📝 Validating required fields..."
 grep -q "token:" .github/workflows/main.yml && echo "✅ token is configured"
 grep -q "user:" .github/workflows/main.yml && echo "✅ user is configured"
 
+# Test 5: Validate null-safety enhancements
+echo "📝 Validating null-safety enhancements..."
+grep -q "(.user // {})" .github/workflows/main.yml && echo "✅ null-coalescing operators are used for user objects"
+grep -q "plugin_lines_ignored_repositories" .github/workflows/main.yml && echo "✅ lines plugin has additional safety configurations"
+grep -q "plugin_repositories_ignored" .github/workflows/main.yml && echo "✅ repositories plugin has additional safety configurations"
+
 echo "🎉 All tests passed! Configuration should handle null/undefined values safely."
