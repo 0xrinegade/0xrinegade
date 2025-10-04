@@ -53,10 +53,16 @@ jobs:
           config_animations: true
           config_base64: false
           config_padding: 6%
+          # Additional safety configurations
+          repositories_forks: false
+          repositories_contributed_to: true
           # Defensive configurations to prevent null/undefined errors
           repositories_skipped: ""
           users_ignored: ""
-          commits_authoring: .user.login, .user.name, .user.email
+          commits_authoring: >-
+            (.user // {}) | if .login then .login else empty end,
+            (.user // {}) | if .name then .name else empty end,
+            (.user // {}) | if .email then .email else empty end
           # ISO Calendar plugin with defensive settings
           plugin_isocalendar: true
           plugin_isocalendar_duration: half-year
@@ -66,6 +72,7 @@ jobs:
           plugin_lines_repositories_limit: 40
           plugin_lines_sections: base
           plugin_lines_skipped: ""
+          plugin_lines_ignored_repositories: ""
           # Repositories plugin with safer configurations
           plugin_repositories: true
           plugin_repositories_order: featured, pinned, starred, random
@@ -74,6 +81,7 @@ jobs:
           plugin_repositories_affiliations: >-
             owner, collaborator, organization_member
           plugin_repositories_skipped: ""
+          plugin_repositories_ignored: ""
       - uses: lowlighter/metrics@latest
         with:
           filename: metrics.plugin.habits.facts.svg
@@ -87,7 +95,10 @@ jobs:
           config_base64: false
           repositories_skipped: ""
           users_ignored: ""
-          commits_authoring: .user.login, .user.name, .user.email
+          commits_authoring: >-
+            (.user // {}) | if .login then .login else empty end,
+            (.user // {}) | if .name then .name else empty end,
+            (.user // {}) | if .email then .email else empty end
           # Habits plugin with defensive settings
           plugin_habits: true
           plugin_habits_facts: true
